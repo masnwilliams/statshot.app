@@ -100,6 +100,7 @@ export default function MatchContent({ match }) {
                       player.progression.csr.pre_match.tier == 'Unranked' ? <span>Unranked</span> : 
                       <span>{player.progression.csr.pre_match.tier} {player.progression.csr.pre_match.value}</span>
                       }
+                      <span>{player.progression.csr.pre_match.tier} {player.progression.csr.pre_match.value}</span>
                     </div>
                   }
                   
