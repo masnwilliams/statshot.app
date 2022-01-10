@@ -8,7 +8,12 @@ export default function MatchContent({ match }) {
     <div>
       <div className="card">
 
-        <Image src={match?.details.map.asset.thumbnail_url} width={560} height={316} layout='responsive' />
+        <Image 
+          src={match?.details.map.asset.thumbnail_url} 
+          width={560} 
+          height={316} 
+          layout='responsive'
+          priority />
         <div className="flex">
           <div>
             <h1>{match?.details.map.name}</h1>
@@ -73,7 +78,6 @@ export default function MatchContent({ match }) {
               <th>Team</th>
               <th>Player</th>
               <th>Rating</th>
-              <th>Score</th>
               <th>Dealt</th>
               <th>Taken</th>
               <th>KDA</th>
@@ -89,18 +93,17 @@ export default function MatchContent({ match }) {
                   <Link href={`/profile/${player.gamertag}`}>{player.gamertag}</Link>
                 </td>
                 <td>
-                  {player.progression && (
-                    <Image src={player.progression.csr.pre_match.tier_image_url} width={40} height={40} priority={true} /> 
-                  )}
-                  { player.progression && (
-                    player.progression.csr.pre_match.tier
-                  )} 
-                  { player.progression && (
-                    player.progression.csr.pre_match.value
-                  )}
+                  {player.progression &&
+                    <div>
+                      <Image src={player.progression.csr.pre_match.tier_image_url} width={40} height={40} priority={true} /> 
+                      {
+                      player.progression.csr.pre_match.tier == 'Unranked' ? <span>Unranked</span> : 
+                      <span>{player.progression.csr.pre_match.tier} {player.progression.csr.pre_match.value}</span>
+                      }
+                    </div>
+                  }
                   
                 </td>
-                <td>{}</td>
                 <td>{player.stats.core.damage.dealt}</td>
                 <td>{player.stats.core.damage.taken}</td>
                 <td>{Math.round(player.stats.core.kda)}</td>
