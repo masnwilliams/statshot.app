@@ -42,10 +42,10 @@ function SignInButtons() {
       </button>
       {/* <button className="btn-google" onClick={signInWithMicrosoft}>
         <img src={'/microsoft.png'} width="30px" /> Sign in with Microsoft
-      </button> */}
+      </button>
       <button onClick={() => auth.signInAnonymously()}>
         Sign in Anonymously
-      </button>
+      </button> */}
     </>
   );
 }
