@@ -1,19 +1,24 @@
 import PublicUserProfile from '@components/PublicUserProfile';
+import Metatags from '@components/Metatags';
 import MatchFeed from '@components/MatchFeed';
 import { getUserCSRS, getUserMatchList, getUserMultiplayerServiceRecord } from '@lib/helper';
 import { getAllUsernames } from '@lib/firebase';
+import { useContext } from 'react';
+import { UserContext } from '@lib/context';
 
 export default function UserProfilePage({ 
   matches, 
   playerSR, 
   playerCSR 
 }) {
+
+  const { username } = useContext(UserContext);
+
   return (
     <main>
+      <Metatags title={`${username}'s Profile | StatShot`} description={`${username}'s profile page`} />
       <PublicUserProfile playerSR={playerSR} playerCSR={playerCSR} />
-
       <h2>Recent Matches</h2>
-
       <MatchFeed matches={matches} />
     </main>
   );

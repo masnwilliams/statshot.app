@@ -1,8 +1,8 @@
 import Head from 'next/head';
 
 export default function Metatags({
-  title = 'The Full Next.js + Firebase Course',
-  description = 'A complete Next.js + Firebase course by Fireship.io',
+  title = 'Personalized Halo Infinite Stats | StatShot',
+  description = 'A next.js web app built to provide intelligent and dynamic halo infinite stats to players.',
   image = 'https://fireship.io/courses/react-next-firebase/img/featured.png',
 }) {
   return (
@@ -14,8 +14,8 @@ export default function Metatags({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={`${title} | StatShot`}/>
+      <meta property="og:description" content={`${description} | StatShot`} />
       <meta property="og:image" content={image} />
     </Head>
   );
