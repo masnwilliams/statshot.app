@@ -1,10 +1,9 @@
 import { auth, firestore, googleAuthProvider } from '@lib/firebase';
-import { UserContext } from '@lib/context';
+import { redirectTo, UserContext } from '@lib/context';
 import Metatags from '@components/Metatags';
 
 import { useEffect, useState, useCallback, useContext } from 'react';
 import debounce from 'lodash.debounce';
-import { useRouter } from 'next/router';
 
 export default function Login(props) {
   const { user, username } = useContext(UserContext);
@@ -14,23 +13,19 @@ export default function Login(props) {
   // 3. user signed in, has username <SignOutButton />
   return (
     <main>
-      <Metatags title="Login" description="Sign in to this amazing app!" />
+      <Metatags title="StatShot Login" description="Sign up and log in to see your stats faster!" />
       {
       user ? 
       !username ? 
       <UsernameForm /> : 
-      redirectToProfile()
+      redirectTo('/profile')
       : <SignInButtons />
       }
     </main>
   );
 }
 
-function redirectToProfile() {
-  const router = useRouter();
 
-  router.push('/profile');
-}
 
 // Sign in with Google button
 function SignInButtons() {

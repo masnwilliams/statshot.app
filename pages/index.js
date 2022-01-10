@@ -1,3 +1,4 @@
+import Metatags from "@components/Metatags";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -22,6 +23,7 @@ export default function Home(props) {
 
   return (
     <main>
+      <Metatags />
       <div className="card">
           <input id="gamertag" className="w-full rounded mr-4" type="text" placeholder="Search gamertag..." />
       </div>

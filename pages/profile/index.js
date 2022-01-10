@@ -8,7 +8,7 @@ export default function UserProfilePage() {
 
   return (
     <main>
-      <Metatags title={username} description={`${username}'s profile`} />
+      <Metatags title={`${username}'s Profile | StatShot`} description={`${username}'s profile`} />
       Hello {username}
     </main>
   );
