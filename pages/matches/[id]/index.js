@@ -1,15 +1,34 @@
-import { getUserWithUsername, matchToJSON } from '@lib/firebase';
-import UserProfile from '@components/PublicUserProfile';
-import Metatags from '@components/Metatags';
 import MatchContent from '@components/MatchContent';
-import { getMatchDetails } from '@lib/helper';
+import { getAllUsernames } from '@lib/firebase';
+import { getMatchDataArr, getMatchDetails, getMatchesToBuild, getMatchesToBuild2, getUserMatchList } from '@lib/helper';
 
-export async function getServerSideProps({ query }) {
+export default function MatchPage({ match }) {
+  return (
+    <main>
+      <MatchContent match={match} />
+    </main>
+  );
+}
+
+export async function getStaticPaths() {
+
+  const usernames = await getAllUsernames();
+
+  const matches = await getMatchesToBuild(usernames);
+
+  // console.log(matches);
+
+  const paths = matches.map((match) => ({
+    params: { id: match.id },
+  }))
+
+  return { paths, fallback: 'blocking' };
+}
+
+export async function getStaticProps({ params }) {
   
-  const { id } = query;
-
   const reqData = {
-    match_id: id,
+    match_id: params.id,
   };
 
   const preMatch = await getMatchDetails(reqData);
@@ -19,12 +38,4 @@ export async function getServerSideProps({ query }) {
   return {
     props: { match }, // will be passed to the page component as props
   };
-}
-
-export default function UserProfilePage({ match }) {
-  return (
-    <main>
-      <MatchContent match={match} />
-    </main>
-  );
 }
