@@ -12,7 +12,11 @@ export default function Navbar() {
 
   const signOut =  () => {
     auth.signOut();
-    router.reload();
+    if (router.pathname == '/profile') {
+      router.push('/login')
+    } else {
+      router.reload();
+    }
   }
 
   return (
