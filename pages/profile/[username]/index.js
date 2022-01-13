@@ -1,18 +1,17 @@
 import PublicUserProfile from '@components/PublicUserProfile';
 import Metatags from '@components/Metatags';
 import MatchFeed from '@components/MatchFeed';
-import { getUserCSRS, getUserMatchList, getUserMultiplayerServiceRecord } from '@lib/helper';
+import { getPlayerCSRS, getPlayerMatchList, getPlayerMultiplayerServiceRecord } from '@lib/helper';
 import { getAllUsernames } from '@lib/firebase';
 import { useContext } from 'react';
 import { UserContext } from '@lib/context';
 
 export default function UserProfilePage({ 
+  username,
   matches, 
   playerSR, 
   playerCSR 
 }) {
-
-  const { username } = useContext(UserContext);
 
   return (
     <main>
@@ -56,12 +55,13 @@ export async function getStaticProps({ params }) {
     filter: "matchmade:ranked"
   };
 
-  const matches = await getUserMatchList(matchData);
-  const playerSR = await getUserMultiplayerServiceRecord(userSRData);
-  const playerCSR = await getUserCSRS(userCsrData);
+  const matches = await getPlayerMatchList(matchData);
+  const playerSR = await getPlayerMultiplayerServiceRecord(userSRData);
+  const playerCSR = await getPlayerCSRS(userCsrData);
 
   return {
     props: { 
+      username,
       matches, 
       playerSR, 
       playerCSR 
