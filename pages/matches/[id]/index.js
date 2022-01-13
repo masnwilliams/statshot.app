@@ -1,10 +1,21 @@
 import MatchContent from '@components/MatchContent';
+import Metatags from '@components/Metatags';
 import { getAllUsernames } from '@lib/firebase';
-import { getMatchDataArr, getMatchDetails, getMatchesToBuild, getMatchesToBuild2, getUserMatchList } from '@lib/helper';
+import { getMatchDetails, getMatchesToBuild } from '@lib/helper';
+import date from 'date-and-time'
 
 export default function MatchPage({ match }) {
+
   return (
     <main>
+      <Metatags title={`
+        [${date.format(new Date(match?.played_at), 'MM/DD/YYYY, h:mm:ss A')}]
+        ${match?.details.playlist.properties.ranked ?
+       'Ranked' : match?.details.playlist.name}:${match?.details.category.name}
+        Match on ${match?.details.map.name}
+      `}
+       />
+
       <MatchContent match={match} />
     </main>
   );

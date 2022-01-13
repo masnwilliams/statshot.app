@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import date from 'date-and-time'
 
 // UI component for main match content
 export default function MatchContent({ match }) {
@@ -66,6 +67,9 @@ export default function MatchContent({ match }) {
                     match?.teams.details[1].stats.mode.flags.captures.total : null
                   }
               </h3>
+            </div>
+            <div>
+              <h1>{date.format(new Date(match?.played_at), 'MM/DD/YYYY, h:mm:ss A')}</h1>
             </div>
           </div>
         </div>
